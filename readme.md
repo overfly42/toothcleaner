@@ -1,1 +1,1 @@
-Initial Info.
+The application is designed to support children on brushing there teeth. It is counting up or downward from 1 to 15 (configurable) and anounces the next area to brush.
