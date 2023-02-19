@@ -5,6 +5,7 @@ For the easy interaction an audio output ist used.
 ## Getting started
 For this Project you will need
 - Rasperry pi (all versions)
+- Python >=3.10
 - Audio Output 
     - Bluetooth interface with bluetooth speaker
     - OR: Audio Output connected via Wire

@@ -98,13 +98,19 @@ class region_state(base_state):
         self.running = False
     def enter_state(self):
         self.running = True
-        match self.area_count:
-            case 0:
-                text = self.words[self.language]['start']
-            case 5:
-                text = self.words[self.language]['stop']
-            case _:
-                text = self.words[self.language]['continue']
+        #match self.area_count:
+        #    case 0:
+        #        text = self.words[self.language]['start']
+        #    case 5:
+        #        text = self.words[self.language]['stop']
+        #    case _:
+        #        text = self.words[self.language]['continue']
+        if self.area_count == 0:
+            text = self.words[self.language]['start']
+        elif self.area_count == 5:
+            text = self.words[self.language]['stop']
+        else :
+            text = self.words[self.language]['continue']
         if DEBUG_OUTPUT:
             print(text)
         else:
