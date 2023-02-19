@@ -26,3 +26,34 @@ The following actions shall be executed by user:
 - Start Program
 - Repeat counting for current area (do not change to next one)
 - Change counting order 
+
+# Requirements
+- Button for start
+- Button for restart
+- Switch for counting direction
+
+# Circuit in ASCII ART
+
+Pin 1 3V3			---+
+                            |
+							|	   ___
+							+---|___|--+
+							|	           |    ___
+Pin 11 GPIO17----------------------+--|___|--------------------------------------+		   
+                            |																|
+							|	  ___														|
+							+---|___|--+												|
+							|	           |    ___										|
+Pin 13 GPIO21 --------------------+--|___|----------------------+		   		|
+                            |												|				|
+							|	  ___										|				|
+							+---|___|--+								|				|
+								           |    ___						|				|
+Pin 15 GPIO22---------------------+--|___|---------------+		|				|
+																	 |		|				|
+Pin 6 GND		---------------------------------------------+-----+--------------+
+
+   ___
+--|___|--+
+           |    ___
+-----------+--|___|--		   
