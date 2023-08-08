@@ -33,7 +33,7 @@ The following actions shall be executed by user:
 - Switch for counting direction
 
 # Circuit in ASCII ART
-
+```
 Pin 1 3V3			---+
                             |
 							|	   ___
@@ -56,4 +56,22 @@ Pin 6 GND		---------------------------------------------+-----+--------------+
    ___
 --|___|--+
            |    ___
------------+--|___|--		   
+-----------+--|___|--		  
+``` 
+# Connect Raspberry Pi via Bluetooth to Speaker
+The following commands demonstrate how to connect a bluetooth device to the raspberry pi. (See [here](https://linuxhint.com/connect-bluetooth-device-to-raspberry-pi-from-terminal/) and [here](https://gist.github.com/actuino/9548329d1bba6663a63886067af5e4cb))
+```
+sudo bluetoothctl
+scan on
+#see list of available devices
+#select device mac representing the speaker
+#e.g. 41:42:00:00:00:FA
+pair 41:42:00:00:00:FA
+trust 41:42:00:00:00:FA
+connect 41:42:00:00:00:FA
+quit
+```
+# For installation run
+```
+sudo make install
+```

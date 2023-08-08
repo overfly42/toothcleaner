@@ -1,0 +1,9 @@
+[Unit]
+Description=Service to theeth cleaning support
+After=multi-user.target
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python <PATH>/control.py
+[Install]
+WantedBy=multi-user.target
