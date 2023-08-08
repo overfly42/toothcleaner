@@ -11,7 +11,7 @@ BTN_CHOOSE_DIRECTION = 13
 
 class master_control_program():
     def __init__(self) -> None:
-
+        self.init_logging()
         self.setup()
         self.count_direction = counter.count_direction.up
         self.state_maschine = counter.init_state_maschine(self.get_direction)
