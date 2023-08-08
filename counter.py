@@ -59,6 +59,7 @@ class area_state(base_state):
         self.downcounting.reverse()
         self.countdirection = get_count_dir
     def process_state(self,word:str):
+        global REPEAT
         if DEBUG_OUTPUT:
             print(word)
         else:
