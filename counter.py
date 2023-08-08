@@ -120,7 +120,7 @@ class region_state(base_state):
             self.speak(text)
         self.area_count = self.area_count+1
         if self.area_count == self.area_count_max:
-            self.running = False
+#            self.running = False
             return
         self.enter_next_state()
     def enter_next_state(self):
