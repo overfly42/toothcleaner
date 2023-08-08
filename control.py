@@ -11,10 +11,6 @@ BTN_CHOOSE_DIRECTION = 13
 
 class master_control_program():
     def __init__(self) -> None:
-        FORMAT = '%(asctime)s %(clientip)-15s %(user)-8s %(message)s'
-        logging.basicConfig(format=FORMAT)
-        self.base_data = {'clientip': '192.168.178.33', 'user': 'toothcleaner'}
-        self.logger = logging.getLogger('Interaction')
 
         self.setup()
         self.count_direction = counter.count_direction.up
@@ -38,6 +34,14 @@ class master_control_program():
     def get_direction(self):
         return self.count_direction
 #endregion    
+#region setup
+    def init_logging(self):
+        FORMAT = '%(asctime)s %(clientip)-15s %(user)-8s %(message)s'
+        logging.basicConfig(format=FORMAT)
+        self.base_data = {'clientip': '192.168.178.33', 'user': 'toothcleaner'}
+        self.logger = logging.getLogger('Interaction')
+        self.logger.setLevel(logging.INFO)
+
     def setup(self):
         self.logger.info('Starting Setup',extra=self.base_data)
         GPIO.setmode(GPIO.BOARD)
@@ -49,7 +53,7 @@ class master_control_program():
         GPIO.add_event_detect(BTN_REPEAT_COUNTING,GPIO.RISING,callback=self.callback_repeat)
         GPIO.add_event_detect(BTN_CHOOSE_DIRECTION,GPIO.RISING,callback=self.callback_change_direction)
         self.logger.info('Setup Done',extra=self.base_data)
-    
+#endregion
 if __name__ == '__main__':
     mcp = master_control_program()
     while True:
