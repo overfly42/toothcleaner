@@ -19,22 +19,24 @@ class master_control_program():
         self.base_data = {'clientip': '192.168.178.33', 'user': 'toothcleaner'}
         self.logger = logging.getLogger('Interaction')
 
-    def callback_start(self):
+#region Callbacks
+    def callback_start(self,data):
         self.logger.info('Callback start triggered',extra=self.base_data)
         if self.state_maschine.running == False:
             self.state_maschine.enter_state()
     
-    def callback_repeat(self):
+    def callback_repeat(self,data):
         self.logger.info('Callback repeat triggered',extra=self.base_data)
         counter.REPEAT = True
 
-    def callback_change_direction(self):
+    def callback_change_direction(self,data):
         self.logger.info('Callback change_direction triggered with current state: {}'.format(self.count_direction))
         self.count_direction = counter.count_direction.up if self.count_direction == counter.count_direction.down else counter.count_direction.down
-
+#endregion
+#region External functions
     def get_direction(self):
         return self.count_direction
-    
+#endregion    
     def setup(self):
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(BTN_START_COUNTING,GPIO.IN)
