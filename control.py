@@ -1,40 +1,39 @@
 import RPi.GPIO as GPIO
 from time import sleep
 import counter
+import logging
 
 BTN_START_COUNTING = 7
 BTN_REPEAT_COUNTING = 11
 BTN_CHOOSE_DIRECTION = 13
 
 
-#channel=7
-
-#GPIO.setmode(GPIO.BOARD)
-#GPIO.setup(channel,GPIO.IN)
-#def cb(value):
-#    print('Got an edge from {}.'.format(value))
-#GPIO.add_event_detect(channel,GPIO.RISING,callback=cb)
-#for i in range(20):
-#    print('Going to sleep')
-#    sleep(1)
 
 class master_control_program():
     def __init__(self) -> None:
         self.setup()
+        self.count_direction = counter.count_direction.up
         self.state_maschine = counter.init_state_maschine(self.get_direction)
+        FORMAT = '%(asctime)s %(clientip)-15s %(user)-8s %(message)s'
+        logging.basicConfig(format=FORMAT)
+        self.base_data = {'clientip': '192.168.178.33', 'user': 'toothcleaner'}
+        self.logger = logging.getLogger('Interaction')
 
     def callback_start(self):
+        self.logger.info('Callback start triggered',extra=self.base_data)
         if self.state_maschine.running == False:
             self.state_maschine.enter_state()
     
     def callback_repeat(self):
+        self.logger.info('Callback repeat triggered',extra=self.base_data)
         counter.REPEAT = True
-        
+
+    def callback_change_direction(self):
+        self.logger.info('Callback change_direction triggered with current state: {}'.format(self.count_direction))
+        self.count_direction = counter.count_direction.up if self.count_direction == counter.count_direction.down else counter.count_direction.down
+
     def get_direction(self):
-        if GPIO.input(BTN_CHOOSE_DIRECTION):
-            return counter.count_direction.up
-        else:
-            return counter.count_direction.down
+        return self.count_direction
     
     def setup(self):
         GPIO.setmode(GPIO.BOARD)
@@ -44,6 +43,7 @@ class master_control_program():
         #Set Callbacks
         GPIO.add_event_detect(BTN_START_COUNTING,GPIO.RISING,callback=self.callback_start)
         GPIO.add_event_detect(BTN_REPEAT_COUNTING,GPIO.RISING,callback=self.callback_repeat)
+        GPIO.add_event_detect(BTN_CHOOSE_DIRECTION,GPIO.RISING,callback=self.callback_change_direction)
     
 if __name__ == '__main__':
     mcp = master_control_program()
