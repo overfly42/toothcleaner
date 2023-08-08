@@ -59,5 +59,4 @@ if __name__ == '__main__':
     mcp = master_control_program()
     while True:
         mcp.state_maschine.enter_state()
-        mcp.state_maschine.reset()
         sleep(5)
