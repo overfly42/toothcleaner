@@ -3,8 +3,8 @@ from enum import Enum
 import pyttsx3  
 from time import sleep
 
-DEBUG_OUTPUT = True
-COUNTER_VALUE = 3
+DEBUG_OUTPUT = False
+COUNTER_VALUE = 15
 TIMER_SLEEP = 0.75
 REPEAT = False
 
