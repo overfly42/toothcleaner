@@ -4,7 +4,7 @@ import pyttsx3
 from time import sleep
 
 DEBUG_OUTPUT = False
-COUNTER_VALUE = 15
+COUNTER_VALUE = 5
 TIMER_SLEEP = 0.75
 REPEAT = False
 
