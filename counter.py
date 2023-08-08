@@ -73,6 +73,7 @@ class area_state(base_state):
             else:
                 self.speak(text)
         if REPEAT:
+            REPEAT = False
             self.process_state(word)
         
     def enter_state(self):
