@@ -19,15 +19,16 @@ class master_control_program():
 #region Callbacks
     def callback_start(self,data):
         self.logger.info('Callback start triggered',extra=self.base_data)
-        if self.state_maschine.running == False:
-            self.state_maschine.enter_state()
+        self.state_maschine.running = True
+        #if self.state_maschine.running == False:
+        #    self.state_maschine.enter_state()
     
     def callback_repeat(self,data):
         self.logger.info('Callback repeat triggered',extra=self.base_data)
         counter.REPEAT = True
 
     def callback_change_direction(self,data):
-        self.logger.info('Callback change_direction triggered with current state: {}'.format(self.count_direction))
+        self.logger.info('Callback change_direction triggered with current state: {}'.format(self.count_direction),extra=self.base_data)
         self.count_direction = counter.count_direction.up if self.count_direction == counter.count_direction.down else counter.count_direction.down
 #endregion
 #region External functions
@@ -57,4 +58,5 @@ class master_control_program():
 if __name__ == '__main__':
     mcp = master_control_program()
     while True:
+        mcp.state_maschine.enter_state()
         sleep(100)

@@ -96,7 +96,9 @@ class region_state(base_state):
         self.area_count_max = 6
         self.running = False
     def enter_state(self):
-        self.running = True
+        if not self.running:
+            return
+        self.running = False
         #match self.area_count:
         #    case 0:
         #        text = self.words[self.language]['start']
