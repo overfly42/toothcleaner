@@ -76,7 +76,6 @@ class area_state(base_state):
             self.process_state(word)
         
     def enter_state(self):
-        self.cu
         self.region_count = 0
         for word in self.words[self.language]:
             self.process_state(word)
