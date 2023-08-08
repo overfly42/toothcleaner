@@ -38,6 +38,7 @@ class master_control_program():
         return self.count_direction
 #endregion    
     def setup(self):
+        self.logger.info('Starting Setup',extra=self.base_data)
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(BTN_START_COUNTING,GPIO.IN)
         GPIO.setup(BTN_REPEAT_COUNTING,GPIO.IN)
@@ -46,6 +47,7 @@ class master_control_program():
         GPIO.add_event_detect(BTN_START_COUNTING,GPIO.RISING,callback=self.callback_start)
         GPIO.add_event_detect(BTN_REPEAT_COUNTING,GPIO.RISING,callback=self.callback_repeat)
         GPIO.add_event_detect(BTN_CHOOSE_DIRECTION,GPIO.RISING,callback=self.callback_change_direction)
+        self.logger.info('Setup Done',extra=self.base_data)
     
 if __name__ == '__main__':
     mcp = master_control_program()
