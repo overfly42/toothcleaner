@@ -11,13 +11,14 @@ BTN_CHOOSE_DIRECTION = 13
 
 class master_control_program():
     def __init__(self) -> None:
-        self.setup()
-        self.count_direction = counter.count_direction.up
-        self.state_maschine = counter.init_state_maschine(self.get_direction)
         FORMAT = '%(asctime)s %(clientip)-15s %(user)-8s %(message)s'
         logging.basicConfig(format=FORMAT)
         self.base_data = {'clientip': '192.168.178.33', 'user': 'toothcleaner'}
         self.logger = logging.getLogger('Interaction')
+
+        self.setup()
+        self.count_direction = counter.count_direction.up
+        self.state_maschine = counter.init_state_maschine(self.get_direction)
 
 #region Callbacks
     def callback_start(self,data):
