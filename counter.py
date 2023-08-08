@@ -93,6 +93,7 @@ class region_state(base_state):
         super().__init__(voice)
         self.reset()
         self.words['german'] = {'start':'Beginnen','stop':'Fertig','continue':'Nächste Seite'}
+        self.running = False
     def reset(self):
         self.area_count = 0
         self.area_count_max = 6
@@ -100,14 +101,6 @@ class region_state(base_state):
     def enter_state(self):
         if not self.running:
             return
-        self.running = False
-        #match self.area_count:
-        #    case 0:
-        #        text = self.words[self.language]['start']
-        #    case 5:
-        #        text = self.words[self.language]['stop']
-        #    case _:
-        #        text = self.words[self.language]['continue']
         if self.area_count == 0:
             text = self.words[self.language]['start']
         elif self.area_count == 5:
@@ -120,7 +113,7 @@ class region_state(base_state):
             self.speak(text)
         self.area_count = self.area_count+1
         if self.area_count == self.area_count_max:
-#            self.running = False
+            self.reset()
             return
         self.enter_next_state()
     def enter_next_state(self):
