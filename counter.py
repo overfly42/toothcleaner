@@ -60,19 +60,21 @@ class area_state(base_state):
         self.countdirection = get_count_dir
     def process_state(self,word:str):
         global REPEAT
-        if DEBUG_OUTPUT:
-            print(word)
-        else:
-            self.speak(word)
+        text = word
+        #if DEBUG_OUTPUT:
+        #    print(word)
+        #else:
+        #    self.speak(word)
         for i in range(len(self.upcounting)):
             if self.countdirection() == count_direction.up:
-                text = self.upcounting[i]
+                text = text + " " + str(self.upcounting[i])
             else:
-                text = self.downcounting[i]
-            if DEBUG_OUTPUT:
-                print(text)
-            else:
-                self.speak(text)
+                text + " " + str(text = self.downcounting[i])
+        if DEBUG_OUTPUT:
+            print(text)
+        else:
+            self.speak(text)
+        
         if REPEAT:
             REPEAT = False
             self.process_state(word)
@@ -127,7 +129,8 @@ def init_state_maschine(func_count_dir=default_count_dir)->region_state:
         Initalizes the state maschine and connects it. also returns the main state
     '''
     voice = pyttsx3.init()  
-    voice.setProperty('rate',175)
+    #voice.setProperty('rate',175)
+    voice.setProperty('rate',120)
     voice.setProperty('voice','german-mbrola-7')
     area = area_state(voice,func_count_dir)
     region = region_state(voice)
