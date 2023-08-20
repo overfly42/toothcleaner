@@ -21,6 +21,8 @@ class master_control_program():
 #region Callbacks
     def callback_start(self,data):
         self.logger.info('Callback start triggered',extra=self.base_data)
+        proc = subprocess.Popen('bluetoothctl connect 41:42:00:00:00:FA', shell=True, stdout=subprocess.PIPE)
+        proc.wait()
         self.state_maschine.running = True
         #if self.state_maschine.running == False:
         #    self.state_maschine.enter_state()
