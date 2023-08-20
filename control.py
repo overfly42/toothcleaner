@@ -58,7 +58,7 @@ class master_control_program():
         GPIO.add_event_detect(BTN_REPEAT_COUNTING,GPIO.RISING,callback=self.callback_repeat)
         GPIO.add_event_detect(BTN_CHOOSE_DIRECTION,GPIO.RISING,callback=self.callback_change_direction)
         #set volumn to 20%
-        proc = subprocess.Popen('/usr/bin/amixer sset Master 5%', shell=True, stdout=subprocess.PIPE)
+        proc = subprocess.Popen('/usr/bin/amixer sset Master 30%', shell=True, stdout=subprocess.PIPE)
         proc.wait()
         self.logger.info('Setup Done',extra=self.base_data)
 #endregion
