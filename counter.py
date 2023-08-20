@@ -130,7 +130,7 @@ def init_state_maschine(func_count_dir=default_count_dir)->region_state:
     '''
     voice = pyttsx3.init()  
     #voice.setProperty('rate',175)
-    voice.setProperty('rate',120)
+    voice.setProperty('rate',90)
     voice.setProperty('voice','german-mbrola-7')
     area = area_state(voice,func_count_dir)
     region = region_state(voice)

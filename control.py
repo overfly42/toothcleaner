@@ -2,6 +2,8 @@ import RPi.GPIO as GPIO
 from time import sleep
 import counter
 import logging
+import subprocess
+
 
 BTN_START_COUNTING = 7
 BTN_REPEAT_COUNTING = 11
@@ -54,6 +56,9 @@ class master_control_program():
         GPIO.add_event_detect(BTN_REPEAT_COUNTING,GPIO.RISING,callback=self.callback_repeat)
         GPIO.add_event_detect(BTN_CHOOSE_DIRECTION,GPIO.RISING,callback=self.callback_change_direction)
         self.logger.info('Setup Done',extra=self.base_data)
+        #set volumn to 20%
+        proc = subprocess.Popen('/usr/bin/amixer sset Master 20%', shell=True, stdout=subprocess.PIPE)
+        proc.wait()
 #endregion
 if __name__ == '__main__':
     mcp = master_control_program()

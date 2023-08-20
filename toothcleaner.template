@@ -2,8 +2,12 @@
 Description=Service to theeth cleaning support
 After=multi-user.target
 [Service]
+Environment="XDG_RUNTIME_DIR=/run/user/1000"
+Environment="PULSE_RUNTIME_PATH=/run/user/1000/pulse/"
+User=christian
+Group=audio
 Type=simple
 Restart=always
-ExecStart=/usr/bin/python <PATH>/control.py
+ExecStart=/usr/bin/python /home/christian/toothcleaner/control.py
 [Install]
 WantedBy=multi-user.target
