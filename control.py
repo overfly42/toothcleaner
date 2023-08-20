@@ -21,9 +21,6 @@ class master_control_program():
 #region Callbacks
     def callback_start(self,data):
         self.logger.info('Callback start triggered',extra=self.base_data)
-        #set volumn to 20%
-        proc = subprocess.Popen('/usr/bin/amixer sset Master 5%', shell=True, stdout=subprocess.PIPE)
-        proc.wait()
         proc = subprocess.Popen('bluetoothctl connect 41:42:00:00:00:FA', shell=True, stdout=subprocess.PIPE)
         proc.wait()
         self.state_maschine.running = True
@@ -60,6 +57,9 @@ class master_control_program():
         GPIO.add_event_detect(BTN_START_COUNTING,GPIO.RISING,callback=self.callback_start)
         GPIO.add_event_detect(BTN_REPEAT_COUNTING,GPIO.RISING,callback=self.callback_repeat)
         GPIO.add_event_detect(BTN_CHOOSE_DIRECTION,GPIO.RISING,callback=self.callback_change_direction)
+        #set volumn to 20%
+        proc = subprocess.Popen('/usr/bin/amixer sset Master 5%', shell=True, stdout=subprocess.PIPE)
+        proc.wait()
         self.logger.info('Setup Done',extra=self.base_data)
 #endregion
 if __name__ == '__main__':
