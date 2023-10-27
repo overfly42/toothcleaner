@@ -59,22 +59,26 @@ class area_state(base_state):
         self.downcounting.reverse()
         self.countdirection = get_count_dir
     def process_state(self,word:str):
+        '''
+            This speaks the given word. and then speaks all items from up or downcounting.
+        '''
         global REPEAT
         text = word
-        #if DEBUG_OUTPUT:
-        #    print(word)
-        #else:
-        #    self.speak(word)
+        if DEBUG_OUTPUT:
+            print(word)
+        else:
+            self.speak(word)
         for i in range(len(self.upcounting)):
             if self.countdirection() == count_direction.up:
-                text = text + " " + str(self.upcounting[i])
+#                text = text + " " + str(self.upcounting[i])
+                text = str(self.upcounting[i])
             else:
-                text + " " + str(text = self.downcounting[i])
-        if DEBUG_OUTPUT:
-            print(text)
-        else:
-            self.speak(text)
-        
+#                text + " " + str(text = self.downcounting[i])
+                text = str(text = self.downcounting[i])
+            if DEBUG_OUTPUT:
+                print(text)
+            else:
+                self.speak(text)
         if REPEAT:
             REPEAT = False
             self.process_state(word)
