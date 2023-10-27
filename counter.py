@@ -74,7 +74,7 @@ class area_state(base_state):
                 text = str(self.upcounting[i])
             else:
 #                text + " " + str(text = self.downcounting[i])
-                text = str(text = self.downcounting[i])
+                text = str(self.downcounting[i])
             if DEBUG_OUTPUT:
                 print(text)
             else:
